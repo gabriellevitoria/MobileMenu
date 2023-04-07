@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color: #e5dda8;
+    text-decoration: none;
+    transition: 0.3s; /**/
+}
+
+a:hover{
+    opacity: 0.7;/**/
+}
+
+.logo{
+    font-size: 24px;
+    text-transform: uppercase; /**/
+    letter-spacing: 4px; /**/
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    background: #283618;
+    height: 8vh; /*Vh -> unidade responsiva que se adapta a altura da janela de vizualização do usuário */
+}
+
+main{
+    background: url() no-repeat
+    center center;  /*posicionamento nos eixos x e y*/
+    background-size: cover;
+    height: 92vh;
+}
+
+.nav-list li{
+    letter-spacing: 3px;
+    margin-left: 32px; /*para afastar um pouco os itens*/
+
+}
+.mobile-menu{
+    display: none;
+    cursor: pointer;
+}
+.mobile-menu div{
+    width: 32px;
+    height: 2px;
+    background: #e5dda8;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+@media (max-width: 999px) /*quando a tela for menor que esse tamanho */{
+   body{ 
+        overflow-x: hidden; /*Essa propriedade faz com que se algo transborde para fora do site fica escondido do body.
+         Logo, contornamos o problema gerado pela propriedade transform*/
+    }
+    .nav-list{ /*O objetivo dessa navegação é ser revelado quando o usuário clicar no botão de menu*/
+        position: absolute;
+        top: 8vh;
+        right: 0;
+        width: 50vw;
+        height: 92vh;
+        background: #283618;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%); /*Para concluir o objetivo usamos essa propriedade que faz com 
+        que a navegação vá para fora do body do site*/
+        transition: transform 0.3s ease-in; /*animação de chegada suave */
+
+    }
+    .nav-list li{
+        margin-left: 0;
+        opacity: 0;
+        
+    }
+
+    .mobile-menu{
+        display: block;
+
+    }
+
+    a{
+        color: #e5dda8;
+    }
+
+}
+
+.nav-list.active{
+    transform: translateX(0); /**/
+}
+
+@keyframes navLinkFade{
+    from {
+        opacity: 0;
+        transform: translateX(50px); /*Leve translação da esquerda para a direita, voltando a posição inicial
+        dando a impressão que surgiram*/
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
